@@ -102,6 +102,7 @@ setup_raid5_lvm() {
 setup_nfs_share(){ 
   systemctl enable rpcbind nfs-server nfs-lock nfs-idmap
   systemctl start rpcbind nfs-server nfs-lock nfs-idmap
+  log "enabled rpcbind, nfs-server, nfs-lock, nfs-idmap services"
   echo "$RAID_MOUNT *(rw,sync,no_root_squash,no_all_squash)" >> /etc/exports
   exportfs -a; systemctl restart nfs-server
   for service in nfs mountd rpc-bind; do
